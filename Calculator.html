@@ -1,110 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <!--Bootstrap CDN Links-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modern Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-h1,
-p,
-a{
-  margin: 0;
-  padding: 0;
-  font-family: 'Lato';
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-
-h1 {
-  font-size: 2.8em;
-  padding: 10px 0;
-  font-weight: 800;
-}
-
-p {
-  font-size: 1.1em;
-  font-weight: 100;
-  letter-spacing: 5px;
-}
-
-.header {
-  width: 100%;
-  padding:77px 0;
+.calculator {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   text-align: center;
-  background: #33cccc;
+}
+h1 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: right;
+  margin-bottom: 15px;
+}
+button {
+  background: #fff;
+  border: none;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  background: #ddd;
+  transform: translateY(-3px);
+}
+button:active {
+  transform: translateY(1px);
+}
+.operator {
+  background: #ff7675;
   color: white;
 }
-
-
-
-
-   
+.equals {
+  background: #55efc4;
+  color: white;
+}
 </style>
-	<title>Calculater</title>
 </head>
 <body>
+<div class="calculator">
+  <h1>Calculator</h1>
+  <input type="text" id="Calc" readonly>
+  <div>
+    <button onclick="clearCalc()">C</button>
+    <button class="operator" onclick="appendValue('/')">/</button>
+    <button class="operator" onclick="appendValue('*')">×</button>
+    <button class="operator" onclick="appendValue('-')">−</button>
+  </div>
+  <div>
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button class="operator" onclick="appendValue('+')">+</button>
+  </div>
+  <div>
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button onclick="appendValue('.')">.</button>
+  </div>
+  <div>
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button class="equals" onclick="calculate()">=</button>
+  </div>
+  <div>
+    <button style="width: 215px" onclick="appendValue('0')">0</button>
+  </div>
+</div>
 
-
-  <section class="header">
-    <h1>Lets Calculate!</h1>
-    <p>"Calculate with ease"</p>
-    
-</section>
-  <center>
-    <div class="border p-2 Calculater bg-light
-" style="width:300px;height: 340px;  margin-top: 50px;">
-
-      <form name="calculator" action="" method="GET">
-        <input class="p-2" id="Calc" type="text" name="answer">
-        <button class="p-2 btn btn-danger" type="button" onclick="javascript:reset()">Reset</button>
-
-        <br><br>
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="1" onclick="calculator.answer.value += '1'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="2" onclick="calculator.answer.value +='2'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="3" onclick="calculator.answer.value +='3'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="+" onclick="calculator.answer.value += '+'">
-
-        <br><br>
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="4" onclick="calculator.answer.value += '4'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="5" onclick="calculator.answer.value += '5'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="6" onclick="calculator.answer.value += '6'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="-" onclick="calculator.answer.value += '-'">
-        <br><br>
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="7" onclick="calculator.answer.value += '7'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="8" onclick="calculator.answer.value += '8'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="9" onclick="calculator.answer.value += '9'">
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="*" onclick="calculator.answer.value += '*'">
-
-        <br><br>
-        <input class="p-2 pl-4 pr-4 btn btn-info"  type="button" value="0" onclick="calculator.answer.value += '0'">
-        <button class="p-2 pl-4 pr-4 btn btn-success"style="width: 125px" type="button" onclick="calculate()">=</button>
-        <input class="p-2 pl-4 pr-4 btn btn-info" type="button" value="/" onclick="calculator.answer.value += '/'">
-      </form>
-
-    </div>
-  </center>
-
-  <script type="text/javascript">
-    function reset() {
-      document.getElementById('Calc').value = ''; 
-    }
-
-    function calculate() {
-      var result = eval(document.getElementById('Calc').value);
-      document.getElementById('Calc').value = result;
-    }
-  </script>
+<script>
+function appendValue(value) {
+  document.getElementById('Calc').value += value;
+}
+function clearCalc() {
+  document.getElementById('Calc').value = '';
+}
+function calculate() {
+  try {
+    document.getElementById('Calc').value = eval(document.getElementById('Calc').value);
+  } catch {
+    document.getElementById('Calc').value = 'Error';
+  }
+}
+</script>
 </body>
 </html>
-
